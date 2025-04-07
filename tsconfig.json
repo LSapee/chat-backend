@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true, //import를 사용하기 위한 옵션
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "typeRoots": [ //직접 만든 타입을 사용하기 위해서 type을 사용하기 위해서 Root 지정
+      "./node_modules/@types", // 기존의 node_modules에 있는 타입 사용
+      "./src/types" // 직접 만든 타입을 사용하기 위해서
+    ]
+  }
+}
