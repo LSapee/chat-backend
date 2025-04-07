@@ -17,9 +17,7 @@ import {Server,Socket} from  "socket.io"
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
-
   private userSocketMap:Map<string,string> = new Map();
-
   // 연결
   handleConnection(client: Socket) {
     const user_id:string|string[] =  client.handshake.query.userId;
