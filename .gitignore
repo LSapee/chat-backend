@@ -29,3 +29,6 @@ coverage
 
 #env
 env/*
+
+# API Test
+*.http
