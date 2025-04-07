@@ -19,18 +19,18 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   server: Server;
 
   private userSocketMap:Map<string,string> = new Map();
-  private userId:string|string[] = "";
 
   // 연결
   handleConnection(client: Socket) {
-    this.userId= client.handshake.query.userId;
-    if(typeof this.userId === 'string') this.userSocketMap.set(this.userId,client.id);
+    const user_id:string|string[] =  client.handshake.query.userId;
+    if(typeof user_id === 'string') this.userSocketMap.set(user_id,client.id);
     client.emit('getOnlineUsers', Array.from(this.userSocketMap.keys()));
   }
   // 연결 해제
   handleDisconnect(client: Socket) {
-    if(this.userId === typeof 'string') this.userSocketMap.delete(this.userId);
-    client.emit('getOnlineUsers', Object.keys(this.userSocketMap));
+    const user_id:string|string[] = client.handshake.query.userId;
+    if(typeof user_id === 'string') this.userSocketMap.delete(user_id);
+    client.emit('getOnlineUsers', Array.from(this.userSocketMap.keys()));
   }
   //
   // @SubscribeMessage('message')
