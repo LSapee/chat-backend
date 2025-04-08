@@ -9,7 +9,7 @@ import {Server,Socket} from  "socket.io"
 @WebSocketGateway({
   namespace: '/chat',
   cors: {
-    origin: 'http://localhost:3000', // 모든 도메인 허용
+    origin: 'https://chat-frontend-ten-alpha.vercel.app', // 모든 도메인 허용
   },
   }
 )

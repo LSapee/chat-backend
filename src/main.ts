@@ -6,7 +6,7 @@ import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule,{cors:{
-      origin:"http://localhost:3000",
+      origin:"https://chat-frontend-ten-alpha.vercel.app",
       credentials:true,
     }});
   const PORT = process.env.PORT||5001;
