@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { User } from '../interfaces/user.interface';
 import { Message } from '../interfaces/message.interface';
 import { AwsS3Service } from '../aws/aws.service';
-import {ChatGateway} from "../gateway/chat.gateway"
+import {ChatGateway} from "../chat/chat.gateway"
 
 @Injectable()
 export class MessageService {

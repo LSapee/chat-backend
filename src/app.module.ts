@@ -9,7 +9,8 @@ import { UserModule } from './user/user.module';
 import { AwsModule } from './aws/aws.module';
 import { MessageController } from './message/message.controller';
 import { MessageModule } from './message/message.module';
-import { ChatGateway } from './gateway/chat.gateway';
+import { ChatGateway } from './chat/chat.gateway';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { ChatGateway } from './gateway/chat.gateway';
     DatabaseModule,
     UserModule,
     AwsModule,
-    MessageModule
+    MessageModule,
+    ChatModule
   ],
   controllers: [AppController,MessageController,AuthController, ],
   providers: [AppService, ChatGateway],

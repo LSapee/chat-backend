@@ -6,7 +6,7 @@ import { MessageService } from './message.service';
 import { MessageProvider } from './message.provider';
 import { DatabaseModule } from '../database/database.module';
 import { AwsS3Service } from '../aws/aws.service';
-import { ChatGateway } from '../gateway/chat.gateway';
+import { ChatGateway } from '../chat/chat.gateway';
 
 @Module({
   imports: [UserModule,

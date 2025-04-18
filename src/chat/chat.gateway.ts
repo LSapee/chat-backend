@@ -5,15 +5,19 @@ import {
   MessageBody, OnGatewayConnection, OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import {Server,Socket} from  "socket.io"
+import process from 'node:process';
 
 @WebSocketGateway({
   namespace: '/chat',
   cors: {
-    origin: 'https://chat-frontend-ten-alpha.vercel.app', // 모든 도메인 허용
+    origin: [
+      process.env.ORIGIN_URL,
+      "http://localhost:3000",
+      "https://chat.lsapee.com"
+    ]
   },
   }
 )
-
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;

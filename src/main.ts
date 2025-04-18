@@ -6,10 +6,10 @@ import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule,{cors:{
-      origin:"https://chat-frontend-ten-alpha.vercel.app",
+      origin: process.env.ORIGIN_URL,
       credentials:true,
     }});
-  const PORT = process.env.PORT||5001;
+  const PORT = process.env.PORT;
   // ALB 설정을 위한 응답시간 설정
   const server = app.getHttpAdapter().getHttpServer();
   server.keepAliveTimeout = 61 * 1000; // ALB Idle Timeout보다 길게 설정
