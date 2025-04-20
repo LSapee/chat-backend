@@ -52,7 +52,7 @@ export class MessageService {
         senderId:senderId,
         receiverId:myId,
         text: text,
-        profilePic:imageUrl,
+        imageUrl:imageUrl,
       });
 
       await newMessage.save();
