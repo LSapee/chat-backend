@@ -34,12 +34,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     if(typeof user_id === 'string') this.userSocketMap.delete(user_id);
     client.emit('getOnlineUsers', Array.from(this.userSocketMap.keys()));
   }
-  //
-  // @SubscribeMessage('message')
-  // handleMessage(@MessageBody() data: string): void {
-  //   console.log("전체 뿌리기");
-  //   // this.server.emit('message', `Echo: ${data}`);
-  // }
+
+  @SubscribeMessage('newMessage')
+  handleMessage(@MessageBody() data): void {
+    this.server.to(data.receiverId).emit('newMessage', `Echo: ${data}`);
+  }
 
   getReceiverSocketId(userId:string) {
     return this.userSocketMap.get(userId);
