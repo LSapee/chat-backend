@@ -54,11 +54,10 @@ export class MessageService {
         text: text,
         imageUrl:imageUrl,
       });
-
       await newMessage.save();
       // 리얼타임 소켓 기능 추가될 곳
       const receiverSocketId = this.chatGateway.getReceiverSocketId(selectedId)
-      if(receiverSocketId) this.chatGateway.handleMessage(newMessage);
+      if(receiverSocketId) this.chatGateway.handleMessage(receiverSocketId,newMessage);
       return newMessage;
     }catch (error){
       console.error("Error in sendMessage",error.message);

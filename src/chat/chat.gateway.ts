@@ -36,8 +36,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('newMessage')
-  handleMessage(@MessageBody() data): void {
-    this.server.to(data.receiverId).emit('newMessage', `Echo: ${data}`);
+  handleMessage(socketId:string,@MessageBody() data): void {
+    this.server.to(socketId).emit('newMessage', data);
   }
 
   getReceiverSocketId(userId:string) {
