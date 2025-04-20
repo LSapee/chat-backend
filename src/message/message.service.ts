@@ -40,7 +40,7 @@ export class MessageService {
       }
   }
 
-  async sendMessage(text,image,senderId,myId){
+  async sendMessage(text,image,senderId,selectedId){
     try{
       let imageUrl:any = "";
       const fileName = "ABC";
@@ -50,14 +50,14 @@ export class MessageService {
       }
       const newMessage = await new this.messageModel({
         senderId:senderId,
-        receiverId:myId,
+        receiverId:selectedId,
         text: text,
         imageUrl:imageUrl,
       });
 
       await newMessage.save();
       // 리얼타임 소켓 기능 추가될 곳
-      const receiverSocketId = this.chatGateway.getReceiverSocketId(myId)
+      const receiverSocketId = this.chatGateway.getReceiverSocketId(selectedId)
       if(receiverSocketId) this.chatGateway.server.to(receiverSocketId).emit("newMessage",newMessage);
       return newMessage;
     }catch (error){
