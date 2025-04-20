@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import * as process from 'node:process';
 import CookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule,{cors:{
@@ -19,6 +20,15 @@ async function bootstrap() {
   app.use(bodyParser.json({limit: '50mb'}));
   app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
   app.use(CookieParser());
+  const config = new DocumentBuilder()
+    .setTitle('Chat-App')
+    .setDescription('The Chat-App API description')
+    .setVersion('1.0')
+    .addTag('Chat-App')
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('apiSettings', app, documentFactory);
+
   await app.listen(PORT,()=>{
     console.log('Server running on port 5001');
   });
