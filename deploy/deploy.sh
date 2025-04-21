@@ -1,6 +1,4 @@
 #!/bin/bash
-
-cd chat-backend
 # 저장소로부터 최신 코드를 가져오거나 업데이트
 git pull origin main
 

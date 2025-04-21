@@ -23,7 +23,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC_INSTANCE_IP }} << EOF
             source ~/.bashrc
-            export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v18.20.0/bin"
-            cd find-job/
+            export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v22.14.0/bin"
+            cd chat-backend/
             bash deploy/deploy.sh
           EOF
