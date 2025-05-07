@@ -1,6 +1,6 @@
 export interface Message{
-  senderId: string;
-  receiverId:string;
+  roomId:string;
+  senderId:string;
   text:string;
   imageUrl: string;
 }
