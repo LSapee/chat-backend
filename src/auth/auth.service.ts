@@ -68,7 +68,7 @@ export class AuthService {
     const fileUrl = await this.awsS3Service.fileUpload(profilePic,fileName);
     // DB에 저장
     const upDatedUser = await this.userModel.findByIdAndUpdate(userID,{
-      profilePicture:fileUrl
+      profilePic:fileUrl
     },{new: true});
     return upDatedUser;
   }
