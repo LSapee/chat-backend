@@ -16,7 +16,7 @@ export class AuthController {
       // 이름 이메일, 비밀번호
       const { fullName, email, password } = req.body;
       const token =await this.authService.signUp(fullName, email, password);
-      // 토큰을 쿠키에 저장
+      if(typeof token === 'object') res.status(HttpStatus.BAD_REQUEST).json({ message:token.message });
       res.cookie("jwt",token,{
         maxAge:7*24*60*60*1000,
         httpOnly:true,
@@ -81,7 +81,6 @@ export class AuthController {
       const userId = req.user._id;
       // 이미지가 없다면 에러 발생
       if(!profilePic) res.status(400).json({ message : "Profile picture already" });
-
       const uploadProfilePic = await this.authService.updateProfile(profilePic,fileName,userId);
       res.status(200).json(uploadProfilePic);
     }catch (e){
